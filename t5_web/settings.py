@@ -26,7 +26,7 @@ SECRET_KEY = '!60bs#e5aamrvx(lfv(wq%kaq*4zv38)k63(m41q!8kg2-8vno'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['t5web.herokuapp.com']
+ALLOWED_HOSTS = ['t5web.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
