@@ -16,7 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from pages.views import get_theman
+from cov_19.views import cov_19
 urlpatterns = [
-    path('', get_theman, name="home"),
     path('admin/', admin.site.urls),
+
+    path('', get_theman, name="home"),
+    path('cov_19/', cov_19, name='cov_19'),
+
 ]

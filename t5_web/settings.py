@@ -41,7 +41,8 @@ INSTALLED_APPS = [
 
     #my apps
     'pages',
-    
+    'cov_19',
+
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,7 @@ ROOT_URLCONF = 't5_web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, "templates") ],
+        'DIRS': [ os.path.join(BASE_DIR, "templates"), os.path.join(BASE_DIR, "drivers") ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
