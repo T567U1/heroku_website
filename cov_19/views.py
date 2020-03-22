@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from bs4 import BeautifulSoup
-import requests, time, lxml
 from selenium import webdriver
+import requests, time, lxml, os
 
 # Create your views here.
 def cov_19(request):
     url = 'https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6'
-    browser = webdriver.PhantomJS("drivers/phantomjs-2.1.1-windows/bin/phantomjs.exe")
+    browser = webdriver.PhantomJS(os.path.join("drivers/phantomjs-2.1.1-windows/bin/phantomjs.exe"))
     browser.get(url)
     time.sleep(10)
     page = browser.page_source
