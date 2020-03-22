@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path
 from pages.views import get_theman
 urlpatterns = [
-    path('home/', get_theman, name="home"),
+    path('', get_theman, name="home"),
     path('admin/', admin.site.urls),
 ]
