@@ -13,13 +13,13 @@ def cov_19(request):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-    #driver.get("https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6")
+    driver.get("https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6")
     time.sleep(20)
     page = driver.page_source
     soup = BeautifulSoup(page, 'lxml')
 
     context = {
-        'totalConfirmed' : soup.find(id='ember26'),
-        #'deaths': soup.find(id='ember83').find_all('g')[3].text
+        'totalConfirmed' : soup.find(id='ember26').find_all('g')[3].text,
+        'deaths': soup.find(id='ember83').find_all('g')[3].text
     }
     return render(request, 'cov_19.html', context)
