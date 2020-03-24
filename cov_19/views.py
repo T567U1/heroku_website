@@ -13,15 +13,16 @@ def cov_19(request):
     page = browser.page_source
     soup = BeautifulSoup(page, 'lxml')
     '''
-    chrome_options = webdriver.chrome_options()
+    chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sanbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get("https://www.google.com")
+    print(driver.page_source)
     context = {
-        'test' : driver.page_source
+        'test' : 'hell'
         #'totalConfirmed' : soup.find(id='ember26').find_all('g')[3].text,
         #'deaths': soup.find(id='ember83').find_all('g')[3].text
     }
