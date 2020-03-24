@@ -19,7 +19,7 @@ def cov_19(request):
     soup = BeautifulSoup(page, 'lxml')
 
     context = {
-        'totalConfirmed' : soup.find(id='ember26').find_all('g')[3].text,
-        'deaths': soup.find(id='ember83').find_all('g')[3].text
+        'totalConfirmed' : soup.find(id='ember26'),
+        #'deaths': soup.find(id='ember83').find_all('g')[3].text
     }
     return render(request, 'cov_19.html', context)
