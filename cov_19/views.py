@@ -21,7 +21,8 @@ def cov_19(request):
 
     context = {
         'totalConfirmed' : soup.find(id='ember26').find_all('g')[3].text,
-        'deaths': soup.find(id='ember83').find_all('g')[3].text
+        'deaths': soup.find(id='ember83').find_all('g')[3].text,
+        'recovered': soup.find(id='ember97').find_all('g')[3].text
     }
     driver.close()
     return render(request, 'cov_19.html', context)
