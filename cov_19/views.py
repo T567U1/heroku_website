@@ -9,16 +9,19 @@ def cov_19(request):
     base_url = "https://corona.lmao.ninja/all"
     response = requests.get(base_url)
     jsonFile = response.json()
-
-    country_url = 'https://corona.lmao.ninja/v2/historical/canada'
-    get_country = requests.get(country_url)
-    jsonFile_ = get_country.json()
-    day_ = jsonFile_['timeline']['cases']
-
+    countries = ['canada', 'usa', 'uk', 'china']
     context = {
         'cases' : locale.format('%d', jsonFile['cases'], grouping=True),
         'deaths' : jsonFile['deaths'],
         'recovered' : jsonFile['recovered'],
-        'data' : day_
+        'data' : { country : get_country(country) for country in countries}
     }
     return render(request, 'cov_19.html', context)
+
+def get_country(country):
+    country_url = 'https://corona.lmao.ninja/v2/historical/' + country
+    get_country = requests.get(country_url)
+    jsonFile_ = get_country.json()
+    day_ = jsonFile_['timeline']['cases']
+
+    return day_

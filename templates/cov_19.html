@@ -4,27 +4,43 @@
 <h1>Comfirm: {{ cases }}</h1>
 <h1>Deaths: {{ deaths }}</h1>
 <h1>Recovered: {{ recovered }}</h1>
-<div id="container"></div>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
-  <script>
-    Highcharts.chart('container', {
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Canada'
-        },
-        xAxis: {
-            categories: [
-            {% for day in data %} '{{ day }}', {% endfor %}
-            ]
-        },
-        series: [{
-            name: 'Increase over days',
-            data: [
-            {% for i in data.values %} parseInt('{{ i }}'), {% endfor %}
-            ]
-        }]
+<div id="container"></div>
+<script>
+  Highcharts.chart('container', {
+      chart: {
+          type: 'line'
+      },
+      title: {
+          text: "Increment of comfirm cases over days"
+      },
+      xAxis: {
+          categories: [
+          {% for day in data.canada %} '{{ day }}', {% endfor %}
+          ]
+      },
+      series: [{
+          name: 'Canada',
+          data: [
+          {% for i in data.canada.values %} parseInt('{{ i }}'), {% endfor %}
+          ]
+      },{
+          name: 'UK',
+          data: [
+          {% for i in data.uk.values %} parseInt('{{ i }}'), {% endfor %}
+          ]
+      },{
+          name: 'USA',
+          data: [
+          {% for i in data.usa.values %} parseInt('{{ i }}'), {% endfor %}
+          ]
+      },{
+          name: 'China',
+          data: [
+          {% for i in data.china.values %} parseInt('{{ i }}'), {% endfor %}
+          ]
+      }]
     });
-  </script>
+</script>
+<footer>All API rights go to <a href="https://github.com/novelcovid/api">NovelCOVID</a></footer>
 {% endblock %}
