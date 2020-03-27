@@ -1,29 +1,24 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import requests, time, lxml, os
+import requests, time, lxml, os, locale
 
 # Create your views here.
 def cov_19(request):
-    chrome_options = webdriver.ChromeOptions()
-    #production
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    #Test env disable this line before deploy
-    #driver = webdriver.Chrome(executable_path=r'C:/Webdrivers/chromedriver.exe')
-    #enable this line before deply
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-    driver.get("https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6")
-    time.sleep(5)
-    page = driver.page_source
-    soup = BeautifulSoup(page, 'lxml')
+    base_url = "https://corona.lmao.ninja/all"
+    response = requests.get(base_url)
+    jsonFile = response.json()
+
+    country_url = 'https://corona.lmao.ninja/v2/historical/canada'
+    get_country = requests.get(country_url)
+    jsonFile_ = get_country.json()
+    day_ = jsonFile_['timeline']['cases']
 
     context = {
-        'totalConfirmed' : soup.find(id='ember26').find_all('g')[3].text,
-        'deaths': soup.find(id='ember83').find_all('g')[3].text,
-        'recovered': soup.find(id='ember97').find_all('g')[3].text
+        'cases' : locale.format('%d', jsonFile['cases'], grouping=True),
+        'deaths' : jsonFile['deaths'],
+        'recovered' : jsonFile['recovered'],
+        'data' : day_
     }
-    driver.close()
     return render(request, 'cov_19.html', context)

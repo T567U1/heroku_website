@@ -1,6 +1,30 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>Comfirm: {{ totalConfirmed }}</h1>
+<h1>Comfirm: {{ cases }}</h1>
 <h1>Deaths: {{ deaths }}</h1>
 <h1>Recovered: {{ recovered }}</h1>
+<div id="container"></div>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Canada'
+        },
+        xAxis: {
+            categories: [
+            {% for day in data %} '{{ day }}', {% endfor %}
+            ]
+        },
+        series: [{
+            name: 'Increase over days',
+            data: [
+            {% for i in data.values %} parseInt('{{ i }}'), {% endfor %}
+            ]
+        }]
+    });
+  </script>
 {% endblock %}

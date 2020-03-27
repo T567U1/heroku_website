@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     #my apps
     'pages',
     'cov_19',
-
 ]
 
 MIDDLEWARE = [
