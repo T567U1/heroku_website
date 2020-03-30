@@ -5,14 +5,43 @@
 <h1>Deaths: {{ deaths }}</h1>
 <h1>Recovered: {{ recovered }}</h1>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
-<div id="container"></div>
+<div id="grow_over_time"></div>
+<div class="jumbotron jumbotron-fluid">
+  <div id="container"></div>
+</div>
+<script>
+  Highcharts.chart('grow_over_time', {
+      chart: {
+          type: 'line'
+      },
+      title: {
+          text: "Increment of confirm cases and deaths"
+      },
+      xAxis: {
+          categories: [
+          {% for cases in grow_over_time.cases %} '{{ cases }}', {% endfor %}
+          ]
+      },
+      series: [{
+          name: 'Confirm Cases',
+          data: [
+          {% for i in grow_over_time.cases.values %} parseInt('{{ i }}'), {% endfor %}
+          ]
+      },{
+        name: 'Deaths',
+        data: [
+          {% for i in grow_over_time.deaths.values %} parseInt('{{ i }}'), {% endfor %}
+        ]
+      }]
+    });
+</script>
 <script>
   Highcharts.chart('container', {
       chart: {
           type: 'line'
       },
       title: {
-          text: "Increment of confirm cases over days"
+          text: "Increment of confirm cases over days by country"
       },
       xAxis: {
           categories: [

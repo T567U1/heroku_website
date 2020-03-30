@@ -14,7 +14,8 @@ def cov_19(request):
         'cases' : locale.format('%d', jsonFile['cases'], grouping=True),
         'deaths' : jsonFile['deaths'],
         'recovered' : jsonFile['recovered'],
-        'data' : { country : get_country(country) for country in countries}
+        'data' : { country : get_country(country) for country in countries},
+        'grow_over_time' : { 'cases' : get_grow_over_time('cases'), 'deaths' : get_grow_over_time('deaths')}
     }
     return render(request, 'cov_19.html', context)
 
@@ -25,3 +26,11 @@ def get_country(country):
     day_ = jsonFile_['timeline']['cases']
 
     return day_
+
+def get_grow_over_time(str):
+    grow_over_time_url = 'https://corona.lmao.ninja/v2/historical/all'
+    get_grow = requests.get(grow_over_time_url)
+    jsonFile_ = get_grow.json()
+    get_info = jsonFile_[str]
+
+    return get_info
