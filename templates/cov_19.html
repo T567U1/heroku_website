@@ -1,13 +1,33 @@
 {% extends 'base.html' %}
 <title>cov_19</title>
+<link rel="stylesheet" href="/css/cov_19.css">
 {% block content %}
-<h1>Comfirm: {{ cases }}</h1>
-<h1>Deaths: {{ deaths }}</h1>
-<h1>Recovered: {{ recovered }}</h1>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
-<div id="grow_over_time"></div>
-<div class="jumbotron jumbotron-fluid">
-  <div id="container"></div>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+     <div class="inner">
+       <nav class="nav nav-masthead justify-content-start">
+         <a class="nav-link" href="../">
+           <h5>Home</h5>
+         </a>
+       </nav>
+     </div>
+  </header>
+  <div class="row">
+    <div class="col text-center">
+      <h1>Comfirm Cases: {{ cases }}</h1>
+      <h1>Deaths: {{ deaths }}</h1>
+      <h1>Recoveries: {{ recovered }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div id="grow_over_time"></div>
+    </div>
+    <div class="col">
+      <div id="countries"></div>
+    </div>
+  </div>
 </div>
 <script>
   Highcharts.chart('grow_over_time', {
@@ -36,7 +56,7 @@
     });
 </script>
 <script>
-  Highcharts.chart('container', {
+  Highcharts.chart('countries', {
       chart: {
           type: 'line'
       },
@@ -71,5 +91,5 @@
       }]
     });
 </script>
-<footer>All API rights go to <a href="https://github.com/novelcovid/api">NovelCOVID</a></footer>
+<footer class="text-center">All API rights go to <a href="https://github.com/novelcovid/api">NovelCOVID</a></footer>
 {% endblock %}

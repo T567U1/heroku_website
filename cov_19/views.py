@@ -23,14 +23,25 @@ def get_country(country):
     country_url = 'https://corona.lmao.ninja/v2/historical/' + country
     get_country = requests.get(country_url)
     jsonFile_ = get_country.json()
-    day_ = jsonFile_['timeline']['cases']
-
+    day_ = {}
+    i = 0
+    for x in jsonFile_['timeline']['cases']:
+        if i == 0:
+            day_[x] = jsonFile_['timeline']['cases'][x]
+        i += 1 if i < 7 else -7
+    print(day_)
     return day_
 
 def get_grow_over_time(str):
     grow_over_time_url = 'https://corona.lmao.ninja/v2/historical/all'
     get_grow = requests.get(grow_over_time_url)
     jsonFile_ = get_grow.json()
-    get_info = jsonFile_[str]
-
+    get_info = {}
+    i = 0
+    for entry in jsonFile_[str]:
+        if i == 0:
+            get_info[entry] = jsonFile_[str][entry]
+        i += 1
+        if i == 5:
+            i = 0
     return get_info
