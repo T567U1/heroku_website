@@ -11,7 +11,8 @@ def cov_19(request):
     jsonFile = response.json()
     countries = ['canada', 'usa', 'uk', 'china']
     context = {
-        'cases' : locale.format('%d', jsonFile['cases'], grouping=True),
+        'cases' : jsonFile['cases'],
+        'active' : jsonFile['cases'] - jsonFile['deaths'] - jsonFile['recovered'],
         'deaths' : jsonFile['deaths'],
         'recovered' : jsonFile['recovered'],
         'data' : { country : get_country(country) for country in countries},
@@ -45,6 +46,6 @@ def get_grow_over_time(str):
         if i == 0:
             get_info[entry] = jsonFile_[str][entry]
         i += 1 if i < 5 else -5
-    get_info[get_data[-1]] = jsonFile_[str][get_data[-1]] 
+    get_info[get_data[-1]] = jsonFile_[str][get_data[-1]]
 
     return get_info

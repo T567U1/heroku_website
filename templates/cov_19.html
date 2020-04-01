@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 <title>cov_19</title>
-<link rel="stylesheet" href="/css/cov_19.css">
+<link rel="stylesheet" href="css/cov_19.css">
 {% block content %}
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
@@ -8,26 +8,28 @@
      <div class="inner">
        <nav class="nav nav-masthead justify-content-start">
          <a class="nav-link" href="../">
-           <h5>Home</h5>
+           Home
          </a>
        </nav>
      </div>
   </header>
   <div class="row">
     <div class="col text-center">
-      <h1>Comfirm Cases: {{ cases }}</h1>
-      <h1>Deaths: {{ deaths }}</h1>
-      <h1>Recoveries: {{ recovered }}</h1>
+      <h5>Comfirm Cases: {{ cases }}</h5>
+      <h5> Activate Cases: {{ active }}
+      <h5>Deaths: {{ deaths }}</h5>
+      <h5>Recoveries: {{ recovered }}</h5>
     </div>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-sm-6">
       <div id="grow_over_time"></div>
     </div>
-    <div class="col">
+    <div class="col-sm-6">
       <div id="countries"></div>
     </div>
   </div>
+  <footer class="text-center">All API rights go to <a href="https://github.com/novelcovid/api">NovelCOVID</a></footer>
 </div>
 <script>
   Highcharts.chart('grow_over_time', {
@@ -36,6 +38,11 @@
       },
       title: {
           text: "Increment of confirm cases and deaths"
+      },
+      yAxis:{
+        title:{
+          text: ''
+        },
       },
       xAxis: {
           categories: [
@@ -62,6 +69,11 @@
       },
       title: {
           text: "Increment of confirm cases over days by country"
+      },
+      yAxis:{
+        title:{
+          text: ''
+        },
       },
       xAxis: {
           categories: [
@@ -91,5 +103,4 @@
       }]
     });
 </script>
-<footer class="text-center">All API rights go to <a href="https://github.com/novelcovid/api">NovelCOVID</a></footer>
 {% endblock %}
