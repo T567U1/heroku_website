@@ -34,8 +34,12 @@
 <script>
   Highcharts.chart('grow_over_time', {
       chart: {
-          type: 'line'
-      },
+        type: 'line',
+        scrollablePlotArea: {
+            minWidth: 700,
+            scrollPositionX: 1
+        }
+    },
       title: {
           text: "Increment of confirm cases and deaths"
       },
@@ -64,9 +68,13 @@
 </script>
 <script>
   Highcharts.chart('countries', {
-      chart: {
-          type: 'line'
-      },
+      chart:{
+        type: 'spline',
+        scrollablePlotArea: {
+            minWidth: 700,
+            scrollPositionX: 1
+        }
+    },
       title: {
           text: "Increment of confirm cases over days by country"
       },
