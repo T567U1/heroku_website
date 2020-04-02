@@ -22,10 +22,12 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col">
       <div id="grow_over_time"></div>
     </div>
-    <div class="col-sm-6">
+  </div>
+  <div class="row">
+    <div class="col">
       <div id="countries"></div>
     </div>
   </div>
@@ -92,7 +94,7 @@
           name: 'Canada',
           data: [
           {% for i in data.canada.values %} parseInt('{{ i }}'), {% endfor %}
-          ]
+      120.    ]
       },{
           name: 'UK',
           data: [
