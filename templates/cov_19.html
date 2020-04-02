@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="css/cov_19.css">
 {% block content %}
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+<div class="graphs">
   <header class="masthead mb-auto">
      <div class="inner">
        <nav class="nav nav-masthead justify-content-start">
@@ -15,8 +15,8 @@
   </header>
   <div class="row">
     <div class="col text-center">
-      <h5>Comfirm Cases: {{ cases }}</h5>
-      <h5> Activate Cases: {{ active }}
+      <h5>Confirm Cases: {{ cases }}</h5>
+      <h5>Activate Cases: {{ active }}</h5>
       <h5>Deaths: {{ deaths }}</h5>
       <h5>Recoveries: {{ recovered }}</h5>
     </div>

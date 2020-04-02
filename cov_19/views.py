@@ -11,10 +11,10 @@ def cov_19(request):
     jsonFile = response.json()
     countries = ['canada', 'usa', 'uk', 'china']
     context = {
-        'cases' : jsonFile['cases'],
-        'active' : jsonFile['cases'] - jsonFile['deaths'] - jsonFile['recovered'],
-        'deaths' : jsonFile['deaths'],
-        'recovered' : jsonFile['recovered'],
+        'cases' : '{:,}'.format(jsonFile['cases']),
+        'active' : '{:,}'.format(jsonFile['cases'] - jsonFile['deaths'] - jsonFile['recovered']),
+        'deaths' : '{:,}'.format(jsonFile['deaths']),
+        'recovered' : '{:,}'.format(jsonFile['recovered']),
         'data' : { country : get_country(country) for country in countries},
         'grow_over_time' : { 'cases' : get_grow_over_time('cases'), 'deaths' : get_grow_over_time('deaths')}
     }
