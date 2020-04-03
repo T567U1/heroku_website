@@ -9,7 +9,7 @@
     <style media="screen">
       body{
         color: red;
-        font-size: 25px;
+        font-size: 42px;
         background
       }
     </style>
@@ -27,10 +27,10 @@
       </header>
       <div class="row">
         <div class="col text-center">
-          <h3>Confirm Cases: {{ cases }}</h3>
-          <h3>Activate Cases: {{ active }}</h3>
-          <h3>Deaths: {{ deaths }}</h3>
-          <h3>Recoveries: {{ recovered }}</h3>
+          <h2>Confirm Cases: {{ cases }}</h2>
+          <h2>Activate Cases: {{ active }}</h2>
+          <h2>Deaths: {{ deaths }}</h2>
+          <h2>Recoveries: {{ recovered }}</h2>
         </div>
       </div>
       <div class="row justify-content-md-center">
@@ -58,12 +58,14 @@
         legend:{
           itemStyle:{
             color: 'white',
+            fontSize: '25px',
           }
         },
         title: {
             text: "Increment of confirm cases and deaths",
             style:{
               color: 'white',
+              fontSize: '25px',
             }
         },
           yAxis:{
@@ -114,12 +116,14 @@
         legend:{
           itemStyle:{
             color: 'white',
+            fontSize: '25px',
           }
         },
           title: {
               text: "Increment of confirm cases over days by country",
               style:{
                 color: 'white',
+                fontSize: '25px',
               }
           },
           yAxis:{
