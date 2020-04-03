@@ -1,115 +1,171 @@
-<link rel="stylesheet" href="css/cov_19.css">
-{% extends 'base.html' %}
-{% block content %}
-<script src="https://code.highcharts.com/highcharts.src.js"></script>
-<div class="container text-lg">
-  <header class="masthead mb-auto">
-     <div class="inner">
-       <nav class="nav nav-masthead justify-content-start">
-         <a class="nav-link" href="../">
-           Home
-         </a>
-       </nav>
-     </div>
-  </header>
-  <div class="row">
-    <div class="col text-center">
-      <h5>Confirm Cases: {{ cases }}</h5>
-      <h5>Activate Cases: {{ active }}</h5>
-      <h5>Deaths: {{ deaths }}</h5>
-      <h5>Recoveries: {{ recovered }}</h5>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>cov_19</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <style media="screen">
+      body{
+        color: red;
+        font-size: 25px;
+        background
+      }
+    </style>
+  </head>
+  <body class="bg-dark">
+    <div class="container">
+      <header class="masthead mb-auto">
+         <div class="inner">
+           <nav class="nav nav-masthead justify-content-start">
+             <a class="nav-link" href="../">
+               Home
+             </a>
+           </nav>
+         </div>
+      </header>
+      <div class="row">
+        <div class="col text-center">
+          <h3>Confirm Cases: {{ cases }}</h3>
+          <h3>Activate Cases: {{ active }}</h3>
+          <h3>Deaths: {{ deaths }}</h3>
+          <h3>Recoveries: {{ recovered }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-10">
+          <div id="grow_over_time"></div>
+        </div>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-10">
+          <div id="countries"></div>
+        </div>
+      </div>
+      <footer class="text-center">All API rights go to <a href="https://github.com/novelcovid/api">NovelCOVID</a></footer>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div id="grow_over_time"></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div id="countries"></div>
-    </div>
-  </div>
-  <footer class="text-center">All API rights go to <a href="https://github.com/novelcovid/api">NovelCOVID</a></footer>
-</div>
-<script>
-  Highcharts.chart('grow_over_time', {
-      chart: {
-        type: 'line',
-        scrollablePlotArea: {
-            minWidth: 700,
-            scrollPositionX: 1
-        }
-    },
-      title: {
-          text: "Increment of confirm cases and deaths"
-      },
-      yAxis:{
-        title:{
-          text: ''
+    <script>
+      Highcharts.chart('grow_over_time', {
+        chart: {
+          type: 'line',
+          backgroundColor: '#9e998e05',
+          scrollablePlotArea: {
+              minWidth: 700,
+              scrollPositionX: 1
+          },
         },
-      },
-      xAxis: {
-          categories: [
-          {% for cases in grow_over_time.cases %} '{{ cases }}', {% endfor %}
-          ]
-      },
-      series: [{
-          name: 'Confirm Cases',
-          data: [
-          {% for i in grow_over_time.cases.values %} parseInt('{{ i }}'), {% endfor %}
-          ]
-      },{
-        name: 'Deaths',
-        data: [
-          {% for i in grow_over_time.deaths.values %} parseInt('{{ i }}'), {% endfor %}
-        ]
-      }]
-    });
-</script>
-<script>
-  Highcharts.chart('countries', {
-      chart:{
-        type: 'spline',
-        scrollablePlotArea: {
-            minWidth: 700,
-            scrollPositionX: 1
-        }
-    },
-      title: {
-          text: "Increment of confirm cases over days by country"
-      },
-      yAxis:{
-        title:{
-          text: ''
+        legend:{
+          itemStyle:{
+            color: 'white',
+          }
         },
-      },
-      xAxis: {
-          categories: [
-          {% for day in data.canada %} '{{ day }}', {% endfor %}
-          ]
-      },
-      series: [{
-          name: 'Canada',
-          data: [
-          {% for i in data.canada.values %} parseInt('{{ i }}'), {% endfor %}
-      120.    ]
-      },{
-          name: 'UK',
-          data: [
-          {% for i in data.uk.values %} parseInt('{{ i }}'), {% endfor %}
-          ]
-      },{
-          name: 'USA',
-          data: [
-          {% for i in data.usa.values %} parseInt('{{ i }}'), {% endfor %}
-          ]
-      },{
-          name: 'China',
-          data: [
-          {% for i in data.china.values %} parseInt('{{ i }}'), {% endfor %}
-          ]
-      }]
-    });
-</script>
-{% endblock %}
+        title: {
+            text: "Increment of confirm cases and deaths",
+            style:{
+              color: 'white',
+            }
+        },
+          yAxis:{
+            title:{
+              text: ''
+            },
+            labels:{
+              style:{
+                fontSize: '20px',
+                color: 'white',
+              }
+            }
+          },
+          xAxis: {
+            categories: [
+              {% for cases in grow_over_time.cases %} '{{ cases }}', {% endfor %}
+            ],
+            labels:{
+              style:{
+                fontSize: '15px',
+                color: 'white',
+              }
+            }
+          },
+          series: [{
+              name: 'Confirm Cases',
+              data: [
+              {% for i in grow_over_time.cases.values %} parseInt('{{ i }}'), {% endfor %}
+              ]
+          },{
+            name: 'Deaths',
+            data: [
+              {% for i in grow_over_time.deaths.values %} parseInt('{{ i }}'), {% endfor %}
+            ]
+          }]
+        });
+    </script>
+    <script>
+      Highcharts.chart('countries', {
+          chart:{
+            type: 'spline',
+            backgroundColor: '#9e998e05',
+            scrollablePlotArea: {
+                minWidth: 700,
+                scrollPositionX: 1
+            }
+        },
+        legend:{
+          itemStyle:{
+            color: 'white',
+          }
+        },
+          title: {
+              text: "Increment of confirm cases over days by country",
+              style:{
+                color: 'white',
+              }
+          },
+          yAxis:{
+            title:{
+              text: ''
+            },
+            labels:{
+              style:{
+                fontSize: '20px',
+                color: 'white',
+              }
+            }
+          },
+          xAxis: {
+              categories: [
+              {% for day in data.canada %} '{{ day }}', {% endfor %}
+            ],
+            labels:{
+                style:{
+                  fontSize: '15px',
+                  color: 'white',
+                }
+              }
+          },
+          series: [{
+            name: 'Canada',
+            data: [
+              {% for i in data.canada.values %} parseInt('{{ i }}'), {% endfor %}
+            ],
+          },{
+              name: 'UK',
+              data: [
+                {% for i in data.uk.values %} parseInt('{{ i }}'), {% endfor %}
+              ]
+          },{
+              name: 'USA',
+              data: [
+              {% for i in data.usa.values %} parseInt('{{ i }}'), {% endfor %}
+              ]
+          },{
+              name: 'China',
+              data: [
+              {% for i in data.china.values %} parseInt('{{ i }}'), {% endfor %}
+              ]
+          }]
+        });
+    </script>
+  </body>
+</html>
