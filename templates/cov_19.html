@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>cov_19</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
     <style media="screen">
       body{
@@ -17,33 +17,167 @@
   <body class="bg-dark">
     <div class="container">
       <header class="masthead mb-auto">
-         <div class="inner">
-           <nav class="nav nav-masthead justify-content-start">
-             <a class="nav-link" href="../">
-               Home
-             </a>
-           </nav>
-         </div>
+        <div class="inner">
+          <nav class="nav nav-masthead justify-content-start">
+            <a class="nav-link" href="../">
+              Home
+            </a>
+          </nav>
+        </div>
       </header>
-      <div class="row">
+      <!-- Drop Down Menu -->
+      <div class="container">
+        <div class="row justify-content-center form-group">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary btn-lg dropdown-toggle"
+              type="button"
+              id="dropdownMenu2"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Get Country Data
+            </button>
+            <div
+              id="drop_menu"
+              class="dropdown-menu"
+              aria-labelledby="dropdownMenu2"
+            >
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Search.."
+                id="myInput"
+                onkeyup="filterFunction()"
+              />
+              {% for country in get_country_total %}
+              <button
+                id="get_country"
+                class="dropdown-item"
+                type="button"
+                onclick="$('.displayCountryInfo').hide(); $('#{{ country.country }}').toggle()"
+              >
+                {{ country.country }}
+              </button>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <!-- Country Data-->
+        {% for country in get_country_total %}
+        <div
+          class="displayCountryInfo form-group"
+          id="{{ country.country }}"
+          style="display: none"
+        >
+          <div class="container text-primary text-center">
+            <div class="row justify-content-center">
+              <div class="col display-2">
+                {{ country.country }}
+              </div>
+            </div>
+            <div class="row justify-content-center border border-info">
+              <div class="col">
+                Cases
+              </div>
+              <rb></rb>
+              <div class="col">
+                {{ country.cases }}
+              </div>
+            </div>
+            <div class="row justify-content-center border border-info">
+              <div class="col">
+                TodayCases
+              </div>
+              <div class="col">
+                {{ country.todayCases }}
+              </div>
+            </div>
+            <div class="row justify-content-center border border-info">
+              <div class="col">
+                Deaths
+              </div>
+              <div class="col">
+                {{ country.deaths }}
+              </div>
+            </div>
+            <div class="row justify-content-center border border-info">
+              <div class="col">
+                Today Deaths
+              </div>
+              <div class="col">
+                {{ country.todayDeaths }}
+              </div>
+            </div>
+            <div class="row justify-content-center border border-info">
+              <div class="col">
+                Recovered
+              </div>
+              <div class="col">
+                {{ country.recovered }}
+              </div>
+            </div>
+            <div class="row justify-content-center border border-info">
+              <div class="col">
+                Active
+              </div>
+              <div class="col">
+                {{ country.active }}
+              </div>
+            </div>
+            <div class="row justify-content-center border border-info">
+              <div class="col">
+                Critical
+              </div>
+              <div class="col">
+                {{ country.critical }}
+              </div>
+            </div>
+            <div class="row justify-content-center border border-info">
+              <div class="col">
+                Cases Per One Million
+              </div>
+              <div class="col">
+                {{ country.casesPerOneMillion }}
+              </div>
+            </div>
+            <div class="row justify-content-center border border-info">
+              <div class="col">
+                Deaths Per One Million
+              </div>
+              <div class="col">
+                {{ country.deathsPerOneMillion }}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- Main Content-->
+      <div class="row form-group">
         <div class="col text-center">
-          <h2>Confirm Cases: {{ cases }}</h2>
-          <h2>Activate Cases: {{ active }}</h2>
-          <h2>Deaths: {{ deaths }}</h2>
-          <h2>Recoveries: {{ recovered }}</h2>
+          <h1>Confirm Cases: {{ cases }}</h1>
+          <h1>Activate Cases: {{ active }}</h1>
+          <h1>Deaths: {{ deaths }}</h1>
+          <h1>Recoveries: {{ recovered }}</h1>
         </div>
       </div>
-      <div class="row justify-content-md-center">
+      <!-- Graphs -->
+      <div class="row justify-content-md-center form-group">
         <div class="col col-lg-10">
           <div id="grow_over_time"></div>
         </div>
       </div>
-      <div class="row justify-content-md-center">
+      <div class="row justify-content-md-center form-group">
         <div class="col col-lg-10">
           <div id="countries"></div>
         </div>
       </div>
-      <footer class="text-center">All API rights go to <a href="https://github.com/novelcovid/api">NovelCOVID</a></footer>
+      <footer class="text-center">
+        All API rights go to
+        <a href="https://github.com/novelcovid/api">NovelCOVID</a>
+      </footer>
     </div>
     <script>
       Highcharts.chart('grow_over_time', {
@@ -68,50 +202,89 @@
               fontSize: '25px',
             }
         },
-          yAxis:{
-            title:{
-              text: ''
+        rangeSelector:{
+            enabled:true
+        },
+        yAxis:{
+          title:{
+            text: ''
+          },
+          labels:{
+            style:{
+              fontSize: '20px',
+              color: 'white',
+            }
+          }
+        },
+        plotOptions: {
+            spline: {
+                lineWidth: 4,
+                states: {
+                    hover: {
+                        lineWidth: 5
+                    }
+                },
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+        xAxis: {
+          categories: [
+            {% for cases in grow_over_time.cases %} '{{ cases }}', {% endfor %}
+          ],
+          labels:{
+            style:{
+              fontSize: '15px',
+              color: 'white',
+            }
+          }
+        },
+        series: [{
+            name: 'Confirm Cases',
+            marker:{
+              radius: 6
             },
-            labels:{
-              style:{
-                fontSize: '20px',
-                color: 'white',
-              }
-            }
-          },
-          xAxis: {
-            categories: [
-              {% for cases in grow_over_time.cases %} '{{ cases }}', {% endfor %}
-            ],
-            labels:{
-              style:{
-                fontSize: '15px',
-                color: 'white',
-              }
-            }
-          },
-          series: [{
-              name: 'Confirm Cases',
-              data: [
-              {% for i in grow_over_time.cases.values %} parseInt('{{ i }}'), {% endfor %}
-              ]
-          },{
-            name: 'Deaths',
             data: [
-              {% for i in grow_over_time.deaths.values %} parseInt('{{ i }}'), {% endfor %}
+            {% for i in grow_over_time.cases.values %} parseInt('{{ i }}'), {% endfor %}
             ]
-          }]
-        });
+        },{
+          name: 'Deaths',
+          marker:{
+            radius: 6
+          },
+          data: [
+            {% for i in grow_over_time.deaths.values %} parseInt('{{ i }}'), {% endfor %}
+          ]
+        }]
+      });
     </script>
     <script>
       Highcharts.chart('countries', {
-          chart:{
-            type: 'spline',
+        chart:{
+            type: 'line',
+            zoomType: 'x',
             backgroundColor: '#9e998e05',
             scrollablePlotArea: {
                 minWidth: 700,
                 scrollPositionX: 1
             }
+        },
+        rangeSelector: {
+            buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
+            inputEnabled: false, // it supports only days
+            selected: 4 // all
         },
         legend:{
           itemStyle:{
@@ -150,26 +323,73 @@
           },
           series: [{
             name: 'Canada',
+            marker:{
+              radius: 6
+            },
+            marker:{
+              radius: 6
+            },
             data: [
               {% for i in data.canada.values %} parseInt('{{ i }}'), {% endfor %}
             ],
           },{
               name: 'UK',
+              marker:{
+                radius: 6
+              },
               data: [
                 {% for i in data.uk.values %} parseInt('{{ i }}'), {% endfor %}
               ]
           },{
               name: 'USA',
+              marker:{
+                radius: 6
+              },
               data: [
               {% for i in data.usa.values %} parseInt('{{ i }}'), {% endfor %}
               ]
           },{
               name: 'China',
+              marker:{
+                radius: 6
+              },
               data: [
               {% for i in data.china.values %} parseInt('{{ i }}'), {% endfor %}
               ]
           }]
         });
+
+        function filterFunction() {
+          var input, filter, ul, li, a, i;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          div = document.getElementById("drop_menu");
+          a = div.getElementsByTagName("button");
+          for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              a[i].style.display = "";
+            } else {
+              a[i].style.display = "none";
+            }
+          }
+        };
     </script>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"
+  ></script>
 </html>

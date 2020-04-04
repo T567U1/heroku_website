@@ -16,7 +16,8 @@ def cov_19(request):
         'deaths' : '{:,}'.format(jsonFile['deaths']),
         'recovered' : '{:,}'.format(jsonFile['recovered']),
         'data' : { country : get_country(country) for country in countries},
-        'grow_over_time' : { 'cases' : get_grow_over_time('cases'), 'deaths' : get_grow_over_time('deaths')}
+        'grow_over_time' : { 'cases' : get_grow_over_time('cases'), 'deaths' : get_grow_over_time('deaths')},
+        'get_country_total' : get_country_total()
     }
     return render(request, 'cov_19.html', context)
 
@@ -39,13 +40,12 @@ def get_grow_over_time(str):
     grow_over_time_url = 'https://corona.lmao.ninja/v2/historical/all'
     get_grow = requests.get(grow_over_time_url)
     jsonFile_ = get_grow.json()
-    get_data = list(jsonFile_[str])
-    get_info = {}
-    i = 0
-    for entry in jsonFile_[str]:
-        if i == 0:
-            get_info[entry] = jsonFile_[str][entry]
-        i += 1 if i < 5 else -5
-    get_info[get_data[-1]] = jsonFile_[str][get_data[-1]]
+    get_data = jsonFile_[str]
 
-    return get_info
+    return get_data
+
+def get_country_total():
+    get_info = requests.get('https://corona.lmao.ninja/countries')
+    jsonFile_ = get_info.json()
+
+    return jsonFile_
