@@ -9,7 +9,7 @@ def cov_19(request):
     base_url = "https://corona.lmao.ninja/all"
     response = requests.get(base_url)
     jsonFile = response.json()
-    countries = ['canada', 'usa', 'uk', 'china']
+    countries = ['canada', 'usa', 'uk', 'spain', 'netherlands', 'italy', 'colombia']
     context = {
         'cases' : '{:,}'.format(jsonFile['cases']),
         'active' : '{:,}'.format(jsonFile['cases'] - jsonFile['deaths'] - jsonFile['recovered']),
