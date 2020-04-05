@@ -322,6 +322,7 @@
               }
           },
           series: [
+          //get country from data .items is needed to access values of inner dictionary
           {% for country, values in data.items %}
             {
               name: '{{ country}}',
@@ -329,6 +330,7 @@
                 radius: 6
               },
             data:[
+            // values gatter from data x not the best variable name
             {% for val, x in values.items %}
               parseInt('{{ x }}'),
             {% endfor %}
