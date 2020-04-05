@@ -321,42 +321,21 @@
                 }
               }
           },
-          series: [{
-            name: 'Canada',
-            marker:{
-              radius: 6
-            },
-            marker:{
-              radius: 6
-            },
-            data: [
-              {% for i in data.canada.values %} parseInt('{{ i }}'), {% endfor %}
-            ],
-          },{
-              name: 'UK',
+          series: [
+          {% for country, values in data.items %}
+            {
+              name: '{{ country}}',
               marker:{
                 radius: 6
               },
-              data: [
-                {% for i in data.uk.values %} parseInt('{{ i }}'), {% endfor %}
-              ]
-          },{
-              name: 'USA',
-              marker:{
-                radius: 6
-              },
-              data: [
-              {% for i in data.usa.values %} parseInt('{{ i }}'), {% endfor %}
-              ]
-          },{
-              name: 'China',
-              marker:{
-                radius: 6
-              },
-              data: [
-              {% for i in data.china.values %} parseInt('{{ i }}'), {% endfor %}
-              ]
-          }]
+            data:[
+            {% for val, x in values.items %}
+              parseInt('{{ x }}'),
+            {% endfor %}
+            ]
+          },
+          {% endfor %}
+        ]
         });
 
         function filterFunction() {
