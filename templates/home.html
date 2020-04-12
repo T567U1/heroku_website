@@ -3,24 +3,57 @@
    <title>Home</title>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+   <link rel="stylesheet" href="/css/home.css">
    <script src="https://code.highcharts.com/highcharts.src.js"></script>
   </head>
   <style media="screen">
-  .navbar-brand, .navbar-toggler-icon, .dropdown-menu, .nav-link{
-    font-size: 50px;
-  }
+    .navbar-toggler-icon, .dropdown-menu, .nav-link{
+      font-size: 100px;
+    }
+    .first_user{
+      font-size: 65px;
+    }
+    .last_user{
+      font-size: 55px;
+    }
+    .footer_user{
+      font-size: 40px;
+    }
+    @media (min-width: 900px) {
+      .navbar-toggler-icon, .dropdown-menu, .nav-link{
+        font-size: 32px;
+      }
+      .first_user{
+        font-size: 65px;
+      }
+      .last_user{
+        font-size: 55px;
+      }
+      .footer_user{
+        font-size: 40px;
+      }
+      .first_user{
+        font-size: 65px;
+      }
+      .last_user{
+        font-size: 55px;
+      }
+      .footer_user{
+        font-size: 40px;
+      }
+    }
   </style>
   <body class="bg-dark text-white">
-    <div class="container h-100">
+    <div class="container-fluid h-100">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">T5</a>
+        <a class="nav-link h3" href="/cov_19/">Cov-Tracker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link active h3" href="/cov_19/">Cov-Tracker</a>
+
             </li>
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle h3" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,12 +69,14 @@
       </nav>
       <div class="container">
         <div class="row h-75 justify-content-center">
-          <div class="col my-auto text-center">
-            <h1>Fernando Dominguez</h1>
-            <h2>Full Stack Develoer</h2>
+          <div class="col-12 my-auto text-center">
+            <div class="container">
+              <h1 class="first_user">Fernando Dominguez</h1>
+              <h2 class="last_user">Full Stack Develoer</h2>
+            </div>
           </div>
         </div>
-        <footer class="text-center h2">Work in Progress</footer>
+        <footer class="footer_user text-center h2">Work in Progress</footer>
       </div>
     </div>
     <div class="container h-100">
