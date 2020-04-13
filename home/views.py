@@ -32,7 +32,8 @@ def get_weather(country_code, city):
     rsp = {
         'country': country_code,
         'city': city.replace('-', ' '),
-        'temp': '{:.2f}'.format(weather_json['main']['temp'] - 273.15)
+        'temp': '{:.2f}'.format(weather_json['main']['temp'] - 273.15),
+        'icon': weather_json['weather']['icon']
     }
 
     return rsp
