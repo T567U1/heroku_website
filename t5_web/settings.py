@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',
 
     #my apps
-    'pages',
     'cov_19',
     'home',
 ]
