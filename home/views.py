@@ -7,11 +7,11 @@ def get_ip(request):
     ip = get_client_ip(request)
     if ip[1]:
         weather = get_ip_info(ip[0])
-        weather['ip'] = ip[0]
-        weather['access'] = ip[1]
-
     else:
-        weather = {'ip': ip[1]}
+        weather = {
+        'city': 'city'.replace('-', ' '),
+        'temp': '{:.2f}'.format(273.15)
+        }
 
     return render(request, 'home.html', weather)
 

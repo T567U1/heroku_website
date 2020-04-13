@@ -2,7 +2,8 @@
   <head>
    <title>Home</title>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/font-awesome.min.css"/>
+   <script src="https://kit.fontawesome.com/302bc49b17.js" crossorigin="anonymous"></script>
    <script src="https://code.highcharts.com/highcharts.src.js"></script>
   </head>
   <style media="screen">
@@ -23,10 +24,11 @@
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-secondary">
       <li class="navbar-brand">
         <a class="nav-link h3 text-light" href="/cov_19/">Cov-19-Tracker</a>
+
       </li>
-      <li class="navbar-nav ml-auto">
-        <a class="nav-link" href="#">{{ city }} {{ temp }}</a>
-      </li>
+      <span class="navbar-text ml-auto">
+        {{ city }} {{ temp }}° 
+      </span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
