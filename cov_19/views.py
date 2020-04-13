@@ -1,4 +1,3 @@
-from django.http import JsonResponse
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 from selenium import webdriver
