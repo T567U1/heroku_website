@@ -8,10 +8,7 @@ def get_ip(request):
     if ip[1]:
         weather = get_ip_info(ip[0])
     else:
-        weather = {
-        'city': 'city'.replace('-', ' '),
-        'temp': '{:.2f}'.format(273.15)
-        }
+        weather = get_ip_info('8.8.8.8')
 
     return render(request, 'home.html', weather)
 
@@ -33,7 +30,7 @@ def get_weather(country_code, city):
         'country': country_code,
         'city': city.replace('-', ' '),
         'temp': '{:.2f}'.format(weather_json['main']['temp'] - 273.15),
-        'icon': weather_json['weather']['icon']
+        'icon': weather_json['weather'][0]['icon']
     }
 
     return rsp
