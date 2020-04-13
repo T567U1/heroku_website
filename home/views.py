@@ -32,7 +32,7 @@ def get_weather(country_code, city):
     rsp = {
         'country': country_code,
         'city': city,
-        'temp': weather_json
+        'temp': weather_json['main']['temp'] - 273.15
     }
 
     return rsp
