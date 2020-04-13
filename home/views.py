@@ -25,6 +25,7 @@ def get_ip_info(ip):
 def get_weather(country_code, city):
 
     api_key = "2f98ded56c73b2ff50dd947e6df2b329"
+    city = city.split()[0]
     base_url = requests.get(f"http://api.openweathermap.org/data/2.5/weather?appid={api_key}&q={city},{country_code.lower()}")
     weather_json = base_url.json()
 
