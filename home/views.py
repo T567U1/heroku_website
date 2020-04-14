@@ -4,10 +4,10 @@ import requests
 
 # Create your views here.
 def get_ip(request):
-    ip = get_client_ip(request)
-    if ip[1]:
+    try:
+        ip = get_client_ip(request)
         weather = get_ip_info(ip[0])
-    else:
+    except:
         weather = get_ip_info('8.8.8.8')
 
     return render(request, 'home.html', weather)
