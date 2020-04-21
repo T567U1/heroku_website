@@ -44,7 +44,7 @@ def get_grow_over_time(str):
     return get_data
 
 def get_country_total():
-    get_info = requests.get('https://corona.lmao.ninja/countries')
+    get_info = requests.get('https://corona.lmao.ninja/v2/countries')
     jsonFile_ = get_info.json()
 
     return jsonFile_
