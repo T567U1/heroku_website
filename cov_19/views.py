@@ -5,7 +5,7 @@ import requests, time, lxml, os, locale
 
 # Create your views here.
 def cov_19(request):
-    base_url = "https://corona.lmao.ninja/all"
+    base_url = "https://corona.lmao.ninja/v2/all"
     response = requests.get(base_url)
     jsonFile = response.json()
     countries = ['canada', 'usa', 'uk', 'spain', 'netherlands', 'italy', 'colombia']
