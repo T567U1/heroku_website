@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from ipware import get_client_ip
+from decouple import config
 import requests, os
 
-#Check .env for api keys
+#Check .env for api keys they are missing for production
 # Create your views here.
 def get_ip(request):
     try:
