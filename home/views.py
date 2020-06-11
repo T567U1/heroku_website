@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from ipware import get_client_ip
-import requests
+import requests, os
 
 # Create your views here.
 def get_ip(request):
@@ -13,7 +13,7 @@ def get_ip(request):
     return render(request, 'home.html', weather)
 
 def get_ip_info(ip):
-    api_key = 'at_FIfs0SjKrCBmADYEqiGrHYDakY1FP'
+    api_key = os.getenv('GEO')
     ip_info = requests.get(f'https://geo.ipify.org/api/v1?apiKey={api_key}&ipAddress={ip}')
     ip_json = ip_info.json()
 
