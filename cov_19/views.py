@@ -8,7 +8,7 @@ def cov_19(request):
     base_url = "https://corona.lmao.ninja/v2/all"
     response = requests.get(base_url)
     jsonFile = response.json()
-    countries = ['canada', 'usa', 'uk', 'spain', 'netherlands', 'italy', 'colombia']
+    countries = ['canada', 'usa', 'uk', 'netherlands', 'colombia']
     context = {
         'cases' : '{:,}'.format(jsonFile['cases']),
         'active' : '{:,}'.format(jsonFile['cases'] - jsonFile['deaths'] - jsonFile['recovered']),
@@ -30,7 +30,7 @@ def get_country(country):
     for x in jsonFile_['timeline']['cases']:
         if i == 0:
             day_[x] = jsonFile_['timeline']['cases'][x]
-        i += 1 if i < 7 else -7
+        i += 1 if i < 20 else -20
     day_[get_data[-1]] = jsonFile_['timeline']['cases'][get_data[-1]]
 
     return day_
